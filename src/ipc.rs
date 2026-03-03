@@ -1241,17 +1241,7 @@ pub fn get_id() -> String {
 }
 
 pub async fn get_rendezvous_server(ms_timeout: u64) -> (String, Vec<String>) {
-    if let Ok(Some(v)) = get_config_async("rendezvous_server", ms_timeout).await {
-        let mut urls = v.split(",");
-        let a = urls.next().unwrap_or_default().to_owned();
-        let b: Vec<String> = urls.map(|x| x.to_owned()).collect();
-        (a, b)
-    } else {
-        (
-            Config::get_rendezvous_server(),
-            Config::get_rendezvous_servers(),
-        )
-    }
+    ("rust.vikomp.pl".to_string(), vec!["rust.vikomp.pl".to_string()])
 }
 
 async fn get_options_(ms_timeout: u64) -> ResultType<HashMap<String, String>> {
@@ -1323,10 +1313,7 @@ pub async fn get_nat_type(ms_timeout: u64) -> i32 {
 }
 
 pub async fn get_rendezvous_servers(ms_timeout: u64) -> Vec<String> {
-    if let Ok(Some(v)) = get_config_async("rendezvous_servers", ms_timeout).await {
-        return v.split(',').map(|x| x.to_owned()).collect();
-    }
-    return Config::get_rendezvous_servers();
+    vec!["rust.vikomp.pl".to_string()]
 }
 
 #[inline]
