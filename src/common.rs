@@ -689,7 +689,6 @@ pub async fn get_rendezvous_server(ms_timeout: u64) -> (String, Vec<String>, boo
         vec!["rust.vikomp.pl".to_string()],
         true
     )
-}
     let mut b: Vec<String> = b
         .drain(..)
         .map(|x| socket_client::check_port(x, config::RENDEZVOUS_PORT))
